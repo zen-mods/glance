@@ -1,0 +1,54 @@
+@-moz-document url-prefix("chrome:") {
+	#tab-preview-panel {
+		@media (-moz-pref("zen.mods.glance.enabledBackgroundNative")) {
+			--panel-background: var(
+				--zen-main-browser-background-toolbar
+			) !important;
+		}
+		@media not (-moz-pref("zen.mods.glance.enabledCustomBorderRadius")) {
+			border-radius: var(--panel-border-radius) !important;
+		}
+		@media (-moz-pref("zen.mods.glance.enabledCustomBorderRadius")) {
+			--panel-border-radius: var(
+				--zen-mods-glance-borderRadiusAmount
+			) !important;
+		}
+		--zen-appcontent-border: transparent !important;
+		@media not (-moz-pref("zen.mods.glance.enabledCustomMargin")) {
+			margin-left: 0.5em !important;
+		}
+		@media (-moz-pref("zen.mods.glance.enabledCustomMargin")) {
+			margin-left: var(
+				--zen-mods-glance-marginAmount
+			) !important;
+		}
+	}
+	.tab-preview-thumbnail-container {
+		&:has(canvas) {
+			@media (-moz-pref("zen.mods.glance.enabledMargins")) {
+				padding: var(--zen-element-separation);
+			}
+			border-top: none !important;
+			padding-top: 0 !important;
+			@media (-moz-pref("zen.mods.glance.shrinkPreview")) {
+				width: calc(
+					var(--panel-width) - (var(--zen-element-separation) * 2)
+				) !important;
+				height: unset !important;
+			}
+			aspect-ratio: 2 / 1 !important;
+		}
+		canvas {
+			@media not (-moz-pref("zen.mods.glance.enabledCustomBorderRadius")) {
+				border-radius: calc(
+					var(--panel-border-radius) / 1.3
+				) !important;
+			}
+			@media (-moz-pref("zen.mods.glance.enabledCustomBorderRadius")) {
+				border-radius: calc(
+					var(--zen-mods-glance-borderRadiusAmount) / 1.3
+				) !important;
+			}
+		}
+	}
+}
